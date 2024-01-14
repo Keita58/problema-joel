@@ -66,7 +66,26 @@ public class Problema {
 			}
 			// En aquests if else mirem si hi ha cap coordenada igual, només 1 a 1
 			else {
-				
+				if(matriu[0][0] == matriu[0][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][0]) {
+					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
+					return solucio;
+				}
+				else if(matriu[0][0] == matriu[0][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][matriu.length - 1]) {
+					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
+					return solucio;
+				}
+				else if(matriu[0][0] == matriu[matriu.length - 1][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][0]) {
+					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
+					return solucio;
+				}
+				else if(matriu[0][matriu.length - 1] == matriu[matriu.length - 1][0] && matriu[0][matriu.length - 1] == matriu[matriu.length - 1][matriu.length - 1]) {
+					int[][] solucio = {{0,1}, {matriu.length - 2, matriu.length - 1}};
+					return solucio;
+				}
+				else {
+					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
+					return solucio;
+				}
 			}
 		}
 	}
