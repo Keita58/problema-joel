@@ -3,6 +3,11 @@ package JUnit;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+/**
+ * @author Marc Sánchez(Keita58)
+ * @version 1.0 (current)
+ */
 public class Problema {
 
 	public static void main(String[] args) {
@@ -22,9 +27,15 @@ public class Problema {
 	}
 	
 	/**
+	 * Processem la matriu per trobar la cantonada més il·luminada
 	 * 
+	 * <p>
+	 * Sumem les quatre cantonades de la matriu (de mida N-1*N-1) i comprovem quina d'aquestes és la suma més gran.
+	 * Per evitar uns temps de càlcul molt elevats, només mirem les files 0 i N-1 i les columnes 0 i N-1 ja que la resta de la matriu
+	 * és igual per a les quatre cantonades.
+	 * </p>
 	 * 
-	 * @param matriu la matriu
+	 * @param matriu la matriu original que parsegem
 	 * @return matriu amb les coordenades de la matriu N-1*N-1
 	 */
 	public static int[][] posicio(int[][] matriu) {
