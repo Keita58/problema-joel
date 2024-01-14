@@ -16,69 +16,104 @@ public class Problema {
 			}
 		}
 		
-		int[][] res = posicio(matriu);
-		
+		int[][] res = posicio(matriu);	
 	}
 
 	public static int[][] posicio(int[][] matriu) {
 		
-		if(matriu[0][0] > matriu[0][matriu.length - 1] && matriu[0][0] > matriu[matriu.length - 1][0] && matriu[0][0] > matriu[matriu.length - 1][matriu.length - 1]) {
+		int q1, q2, q3, q4;
+		q1 = q2 = q3 = q4 = 0;
+		
+		for(int i = 0; i < matriu.length; i++) {
+			if(i == 0) {
+				for(int j = 0; j < matriu.length; j++) {
+					if(i == 0)
+						q1 += matriu[i][j];
+					else if(j == matriu.length - 1)
+						q2 += matriu[i][j];
+					else {
+						q1 += matriu[i][j];
+						q2 += matriu[i][j];
+					}
+				}
+			}
+			else if (i == matriu.length - 1) {
+				for(int j = 0; j < matriu.length; j++) {
+					if(i == 0)
+						q3 += matriu[i][j];
+					else if(j == matriu.length - 1)
+						q4 += matriu[i][j];
+					else {
+						q3 += matriu[i][j];
+						q4 += matriu[i][j];
+					}
+				}
+			}
+			else {
+				q1 += matriu[i][0];
+				q3 += matriu[i][0];
+				q2 += matriu[i][matriu.length - 1];
+				q4 += matriu[i][matriu.length - 1];
+			}
+		}
+		
+		if(q1 > q2 && q1 > q3 && q1 > q4) {
 			int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 			return solucio;
 		}
-		else if(matriu[0][0] < matriu[0][matriu.length - 1] && matriu[0][matriu.length - 1] > matriu[matriu.length - 1][0] && matriu[0][matriu.length - 1] > matriu[matriu.length - 1][matriu.length - 1]) {
+		else if(q1 < q2 && q2 > q3 && q2 > q4) {
 			int[][] solucio = {{0,1}, {matriu.length - 2, matriu.length - 1}};
 			return solucio;
 		}
-		else if(matriu[matriu.length - 1][0] > matriu[0][0] && matriu[matriu.length - 1][0] > matriu[0][matriu.length - 1] && matriu[matriu.length - 1][0] > matriu[matriu.length - 1][matriu.length - 1]) {
+		else if(q3 > q1 && q3 > q2 && q3 > q4) {
 			int[][] solucio = {{1,0}, {matriu.length - 1, matriu.length - 2}};
 			return solucio;
 		}
-		else if(matriu[matriu.length - 1][matriu.length - 1] > matriu[0][0] && matriu[matriu.length - 1][matriu.length - 1] > matriu[0][matriu.length - 1] && matriu[matriu.length - 1][0] < matriu[matriu.length - 1][matriu.length - 1]) {
+		else if(q4 > q1 && q4 > q2 && q3 < q4) {
 			int[][] solucio = {{1,1}, {matriu.length - 1, matriu.length - 1}};
 			return solucio;
 		}
 		// En aquests primers if else mirem si les quatre coordenades son diferents, si no ho son passem a l'else
 		else {
-			if(matriu[0][0] == matriu[0][matriu.length - 1]) {
+			if(q1 == q2) {
 				int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 				return solucio;
 			}
-			else if(matriu[0][0] == matriu[matriu.length - 1][0]) {
+			else if(q1 == q3) {
 				int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 				return solucio;
 			}
-			else if(matriu[0][0] == matriu[matriu.length - 1][matriu.length - 1]) {
+			else if(q1 == q4) {
 				int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 				return solucio;
 			}
-			else if(matriu[0][matriu.length - 1] == matriu[matriu.length - 1][0]) {
+			else if(q2 == q3) {
 				int[][] solucio = {{0,1}, {matriu.length - 2, matriu.length - 1}};
 				return solucio;
 			}
-			else if(matriu[0][matriu.length - 1] == matriu[matriu.length - 1][matriu.length - 1]) {
+			else if(q2 == q4) {
 				int[][] solucio = {{0,1}, {matriu.length - 2, matriu.length - 1}};
 				return solucio;
 			}
-			else if(matriu[matriu.length - 1][0] == matriu[matriu.length - 1][matriu.length - 1]) {
+			else if(q3 == q4) {
 				int[][] solucio = {{1,0}, {matriu.length - 1, matriu.length - 2}};
 				return solucio;
 			}
 			// En aquests if else mirem si hi ha cap coordenada igual, només 1 a 1
 			else {
-				if(matriu[0][0] == matriu[0][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][0]) {
+				if(q1 == q2 && q1 == q3) {
 					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 					return solucio;
 				}
-				else if(matriu[0][0] == matriu[0][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][matriu.length - 1]) {
+				else if(q1 == q2 && q1 == q4) {
 					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 					return solucio;
 				}
-				else if(matriu[0][0] == matriu[matriu.length - 1][matriu.length - 1] && matriu[0][0] == matriu[matriu.length - 1][0]) {
+				else if(q1 == q4 && q1 == q3) {
 					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 					return solucio;
 				}
-				else if(matriu[0][matriu.length - 1] == matriu[matriu.length - 1][0] && matriu[0][matriu.length - 1] == matriu[matriu.length - 1][matriu.length - 1]) {
+				else if(q2 == q3 && q2 == q4) {
 					int[][] solucio = {{0,1}, {matriu.length - 2, matriu.length - 1}};
 					return solucio;
 				}
@@ -86,6 +121,7 @@ public class Problema {
 					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
 					return solucio;
 				}
+				// I en aquests if else mirem si hi ha tres coordenades iguals i l'últim cas, si totes quatre son iguals
 			}
 		}
 	}
