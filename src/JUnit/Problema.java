@@ -1,5 +1,6 @@
 package JUnit;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Problema {
@@ -8,7 +9,7 @@ public class Problema {
 		Scanner ohowo = new Scanner(System.in);
 		
 		int f = ohowo.nextInt();
-		int[][] matriu = new int[f][];
+		int[][] matriu = new int[f][f];
 		
 		for(int i = 0; i < f; i++) {
 			for(int j = 0; j < f; j++) {
@@ -17,8 +18,15 @@ public class Problema {
 		}
 		
 		int[][] res = posicio(matriu);	
+		System.out.println(Arrays.deepToString(res));
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param matriu la matriu
+	 * @return matriu amb les coordenades de la matriu N-1*N-1
+	 */
 	public static int[][] posicio(int[][] matriu) {
 		
 		int q1, q2, q3, q4;
@@ -27,7 +35,7 @@ public class Problema {
 		for(int i = 0; i < matriu.length; i++) {
 			if(i == 0) {
 				for(int j = 0; j < matriu.length; j++) {
-					if(i == 0)
+					if(j == 0)
 						q1 += matriu[i][j];
 					else if(j == matriu.length - 1)
 						q2 += matriu[i][j];
@@ -39,7 +47,7 @@ public class Problema {
 			}
 			else if (i == matriu.length - 1) {
 				for(int j = 0; j < matriu.length; j++) {
-					if(i == 0)
+					if(j == 0)
 						q3 += matriu[i][j];
 					else if(j == matriu.length - 1)
 						q4 += matriu[i][j];
@@ -76,8 +84,14 @@ public class Problema {
 		// En aquests primers if else mirem si les quatre coordenades son diferents, si no ho son passem a l'else
 		else {
 			if(q1 == q2) {
-				int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
-				return solucio;
+				if(matriu.length > 1) {
+					int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
+					return solucio;
+				}
+				else {
+					int[][] solucio = {{0,0}, {matriu.length - 1, matriu.length - 1}};
+					return solucio;
+				}
 			}
 			else if(q1 == q3) {
 				int[][] solucio = {{0,0}, {matriu.length - 2, matriu.length - 2}};
