@@ -100,7 +100,7 @@ public class Problema {
 					return solucio;
 				}
 				else {
-					int[][] solucio = {{0,0}, {matriu.length - 1, matriu.length - 1}};
+					int[][] solucio = {{0,0}, {0,0}};
 					return solucio;
 				}
 			}

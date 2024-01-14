@@ -75,8 +75,8 @@ class TestProblema {
 	
 	@Test
 	void test9() {
-		int[][] matriu = {{-1, -1},{-1, -1}};
-		int[][] res = {{0, 0},{0, 0}};
+		int[][] matriu = {{4, 7, 2, 3},{4, 2, 7, 5},{9, 0, 4, 1},{2, 4, 0, 8}};
+		int[][] res = {{0, 0},{2, 2}};
 		assertArrayEquals(res, Problema.posicio(matriu));
 	}
 	
